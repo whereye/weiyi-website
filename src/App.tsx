@@ -1,5 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MotionConfig, motion } from "framer-motion";
+
+// ============================
+// Types
+// ============================
+export type TechGroup = {
+  title: string;
+  subtitle?: string;
+  note?: string;
+  skills: string[];
+};
 
 // ----------------------------
 // Helpers
@@ -13,21 +23,27 @@ const scrollToId = (id: string) => {
 const SCHOLAR_URL =
   "https://scholar.google.com/citations?hl=zh-CN&user=Nx7UitgAAAAJ&view_op=list_works&gmla=AH8HC4yyHZUpunnL_-tFbHPJDrw2_P7ceBI8msKiG_rtH5ChHdK4QAyL69oFIyK9T58JaqEWSvleAOtR3RVf_XwyX2hetBHFW-20boOt0HX3tSPCPQOU-riqQG0aj07nFg";
 
-// ----------------------------
+// ============================
 // I18N content (EN + ZH)
-// ----------------------------
-const content = {
+// ============================
+const content: Record<"zh" | "en", any> = {
   zh: {
     nav: {
-      about: "关于我", research: "研究方向", tech: "技术技能", publications: "论文发表", cv: "简历", contact: "联系方式", scholar: "学术",
+      home: "首页",
+      about: "关于我",
+      research: "研究方向",
+      tech: "技术技能",
+      publications: "论文发表",
+      contact: "联系方式",
+      scholar: "学术",
     },
     heroTitlePrefix: "欢迎来到",
-    heroTitleName: "Weiyi Ye",
-    heroTitleSuffix: "的大脑世界",
+    heroTitleName: "叶苇一",
+    heroTitleSuffix: "的脑内世界",
     heroSubtitle: "神经科学研究者 · 数据分析者 · 工程工具创造者",
     aboutTitle: "关于我",
     aboutBody: (
-      <>我是 <strong>Weiyi Ye</strong>，研究兴趣包括电路动力学、神经技术方法以及数据驱动的建模。我同时热爱编码、Arduino、3D 打印等工程技能，用以辅助科研与开放科学。</>
+      <>我是 <strong>叶苇一</strong>，研究兴趣包括电路动力学、神经技术方法以及数据驱动的建模。我同时热爱编码、Arduino、3D 打印等工程技能，用以辅助科研与开放科学。</>
     ),
     researchTitle: "研究方向",
     researchBullets: [
@@ -36,8 +52,48 @@ const content = {
       "计算与建模 —— 信号处理与机器学习管线。",
     ],
     techTitle: "技术技能",
-    techTags: [
-      "两光子成像","在体电生理","光遗传学","病毒载体设计","小鼠行为实验","Python 数据分析","机器学习","信号处理","图像配准","统计分析","Arduino & 3D 打印"
+    techGroups: [
+      {
+        title: "技术实验操作",
+        note: "包括小鼠灌注取脑、脑组织切片、免疫荧光染色等",
+        skills: [
+          "小鼠灌注取脑",
+          "脑组织振动切片",
+          "免疫荧光染色",
+          "动物行为学实验",
+          "基础分子生物学操作",
+        ],
+      },
+      {
+        title: "显微成像系统",
+        note: "Olympus 显微成像系统（受 Evident 邀请采访问）",
+        skills: [
+          "FV3000 共聚焦显微镜",
+          "SpinSR 转盘超分辨",
+          "VS200 切片扫描",
+          "FVMPE‑RS 双光子显微成像",
+        ],
+      },
+      {
+        title: "掌握的编程语言",
+        note: "被罗列的语言均被用于独立搭建过自动化数据处理流程",
+        skills: ["ImageJ Macro", "Matlab", "Python"],
+      },
+      {
+        title: "数据分析工具",
+        skills: ["Imaris", "Prism", "Deeplabcut"],
+      },
+      {
+        title: "工程学技术",
+        note: "通过结合系列技术实现了小鼠行为学范式的制作",
+        skills: [
+          "Arduino",
+          "PCB 板绘制 · PCB design",
+          "3D 建模 · 3D modeling",
+          "3D 打印 · 3D printing",
+          "硬件组装及焊接 · Hardware assembly & soldering",
+        ],
+      },
     ],
     timelineTitle: "科研时间线",
     timelineItems: [
@@ -47,17 +103,19 @@ const content = {
       { year: "2025/09", title: "投递文章：AAV在发育期快速表达", desc: "为出生后发育期研究提供新策略与新方法" },
     ],
     publicationsTitle: "论文发表",
-    cvTitle: "简历",
-    cvText: (
-      <>下载我的 <a href="#" className="underline">简历 PDF</a> 或完整学术 CV。</>
-    ),
     contactTitle: "联系方式",
     footer: () => `© ${new Date().getFullYear()} Weiyi Ye`,
     langToggle: "English",
   },
   en: {
     nav: {
-      about: "About", research: "Research", tech: "Techniques", publications: "Publications", cv: "CV", contact: "Contact", scholar: "Scholar",
+      home: "Home",
+      about: "About",
+      research: "Research",
+      tech: "Techniques",
+      publications: "Publications",
+      contact: "Contact",
+      scholar: "Scholar",
     },
     heroTitlePrefix: "Welcome to the world inside",
     heroTitleName: "Weiyi Ye",
@@ -65,7 +123,7 @@ const content = {
     heroSubtitle: "Neuroscience researcher · Data analyst · Builder of tools",
     aboutTitle: "About",
     aboutBody: (
-      <>I’m <strong>Weiyi Ye</strong>, focusing on circuit dynamics, neurotech methods, and data-driven modeling. I enjoy coding, Arduino, and 3D printing to build tools for open science.</>
+      <>I’m <strong>Weiyi Ye</strong>, focusing on circuit dynamics, neurotech methods, and data‑driven modeling. I enjoy coding, Arduino, and 3D printing to build tools for open science.</>
     ),
     researchTitle: "Research",
     researchBullets: [
@@ -74,8 +132,47 @@ const content = {
       "Computation & modeling — signal processing and machine learning pipelines.",
     ],
     techTitle: "Techniques & Skills",
-    techTags: [
-      "Two-photon imaging","In vivo electrophysiology","Optogenetics","Viral vector design","Behavioral assays","Python data analysis","Machine learning","Signal processing","Image registration","Statistics","Arduino & 3D printing"
+    techGroups: [
+      {
+        title: "Experimental Techniques",
+        skills: [
+          "Mouse brain perfusion",
+          "Vibratome tissue sectioning",
+          "Immunofluorescent staining",
+          "Behavioral assays",
+          "Basic molecular biology",
+        ],
+      },
+      {
+        title: "Microscopy Systems",
+        note: "Olympus imaging systems (invited user interview by Evident)",
+        skills: [
+          "FV3000 confocal microscopy",
+          "Spinning‑disk super‑resolution (SpinSR)",
+          "VS200 slide scanner",
+          "FVMPE‑RS two‑photon microscopy",
+        ],
+      },
+      {
+        title: "Programming Languages",
+        note: "用于搭建自动化数据处理流程",
+        skills: ["ImageJ Macro", "Matlab", "Python"],
+      },
+      {
+        title: "Data Analysis Tools",
+        skills: ["Imaris", "Prism", "Deeplabcut"],
+      },
+      {
+        title: "Engineering Skills",
+        note: "通过结合系列技术实现了小鼠行为学范式的制作",
+        skills: [
+          "Arduino",
+          "PCB design",
+          "3D modeling",
+          "3D printing",
+          "Hardware assembly & soldering",
+        ],
+      },
     ],
     timelineTitle: "Research Timeline",
     timelineItems: [
@@ -85,21 +182,33 @@ const content = {
       { year: "2025/09", title: "Manuscript: rapid AAV expression in development", desc: "New strategies for postnatal studies" },
     ],
     publicationsTitle: "Publications",
-    cvTitle: "Curriculum Vitae",
-    cvText: (
-      <>Download a concise <a href="#" className="underline">resume PDF</a> or the full academic CV.</>
-    ),
     contactTitle: "Contact",
     footer: () => `© ${new Date().getFullYear()} Weiyi Ye`,
     langToggle: "中文",
-  }
+  },
 };
 
-// ----------------------------
-// Timeline component (animated)
-// ----------------------------
-function ResearchTimeline({ items }: { items: Array<{ year: string; title: string; desc: string }> }) {
-  const data = items?.length ? items : [];
+// ============================
+// Utilities
+// ============================
+function Authors({ text }: { text?: string }) {
+  if (!text) return null;
+  const parts = text.split(/(Weiyi\s+Ye)/gi);
+  return (
+    <>
+      {parts.map((p, i) =>
+        p.toLowerCase() === "weiyi ye" ? <strong key={i}>Weiyi Ye</strong> : <span key={i}>{p}</span>
+      )}
+    </>
+  );
+}
+
+function ResearchTimeline({
+  items,
+}: {
+  items: Array<{ year: string; title: string; desc: string }>;
+}) {
+  const data = items ?? [];
   return (
     <div className="relative mx-auto max-w-4xl">
       <div className="absolute left-4 top-0 bottom-0 w-px bg-white/10 md:left-1/2" />
@@ -126,74 +235,92 @@ function ResearchTimeline({ items }: { items: Array<{ year: string; title: strin
   );
 }
 
-// ----------------------------
-// Tiny dev checks (act like tests)
-// ----------------------------
-function useDevChecks(publications: Array<{ title: string; authors?: string; url?: string; doi?: string }>) {
-  useEffect(() => {
-    // Test 1
-    if (!Array.isArray(publications)) {
-      console.error("[TEST FAIL] pubs must be an array, got:", typeof publications);
-      return;
-    }
-    // Test 2
-    if (publications.length === 0) {
-      console.warn("[TEST WARN] pubs list is empty; nothing will render under Publications.");
-    }
-    // Test 3
-    publications.forEach((p, i) => {
-      if (!p.title) console.error(`[TEST FAIL] pubs[${i}] missing title`);
-    });
-    // Test 4
-    publications.forEach((p, i) => {
-      if (p.authors && !/\w+\s+\w+/.test(p.authors)) {
-        console.warn(`[TEST WARN] pubs[${i}] authors may not be full names:`, p.authors);
-      }
-    });
-  }, [publications]);
-}
-
-// ----------------------------
-// Render authors with bolded "Weiyi Ye"
-// ----------------------------
-function Authors({ text }: { text?: string }) {
-  if (!text) return null;
-  const parts = text.split(/(Weiyi\s+Ye)/gi);
+function TechSection({ t }: { t: any }) {
+  const groups = t.techGroups as TechGroup[];
   return (
-    <>
-      {parts.map((p, i) => (p.toLowerCase() === "weiyi ye" ? <strong key={i}>Weiyi Ye</strong> : <span key={i}>{p}</span>))}
-    </>
+    <section id="tech" className="mx-auto max-w-6xl px-4 py-20">
+      <h2 className="text-3xl font-bold mb-10">{t.techTitle}</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-12">
+        {groups.map((group, idx) => (
+          <div key={idx} className="flex flex-col rounded-2xl border border-white/10 bg-white/5 p-5">
+            <h3 className="text-xl font-semibold">{group.title}</h3>
+            {group.subtitle && (
+              <div className="text-slate-400 text-sm">{group.subtitle}</div>
+            )}
+            {group.note && (
+              <div className="mt-1 text-slate-500 italic text-xs">{group.note}</div>
+            )}
+            <ul className="mt-3 space-y-1 text-slate-200 text-sm list-disc list-inside">
+              {group.skills.map((s, i) => (
+                <li key={i}>{s}</li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }
 
-// ----------------------------
-// Bilingual Fancy Home with language toggle
-// ----------------------------
-
-export default function FancyHome() {
+// ============================
+// Main App (default export)
+// ============================
+export default function App() {
   const [lang, setLang] = useState<"en" | "zh">("en");
   const t = content[lang];
 
+  // --- subtle parallax for hero background (mouse only) ---
+  const bgRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    if (!window.matchMedia || !window.matchMedia("(pointer:fine)").matches) return;
+    const target = { x: 0, y: 0 };
+    let cur = { x: 0, y: 0 };
+    let raf = 0;
+    const onMove = (e: MouseEvent) => {
+      const nx = e.clientX / window.innerWidth - 0.5;
+      const ny = e.clientY / window.innerHeight - 0.5;
+      const MAX = 10; // px, adjust 6~16
+      target.x = nx * MAX;
+      target.y = ny * MAX;
+    };
+    const tick = () => {
+      cur.x += (target.x - cur.x) * 0.08; // easing
+      cur.y += (target.y - cur.y) * 0.08;
+      if (bgRef.current) bgRef.current.style.transform = `translate3d(${cur.x}px, ${cur.y}px, 0)`;
+      raf = requestAnimationFrame(tick);
+    };
+    window.addEventListener("mousemove", onMove);
+    raf = requestAnimationFrame(tick);
+    return () => { window.removeEventListener("mousemove", onMove); cancelAnimationFrame(raf); };
+  }, []);
+
+  // Publications data
   const pubs = [
     {
-      title: "Rapid Neuronal Labeling and Functional Imaging in the Developing Mouse Brain with AAV-PHP.eB",
-      authors: "Weiyi Ye, Mao Deng, Xiaodong Chen, Sijing Zhao, Simin Su, Bowen Ren, Chuchu Qi, Jialong Li, Mei Fu, Tongtong Gao, Minghan Li, Na Zhou, Shiqian Shen, Wenting Wang, Qian Chen",
+      title:
+        "Rapid Neuronal Labeling and Functional Imaging in the Developing Mouse Brain with AAV-PHP.eB",
+      authors:
+        "Weiyi Ye, Mao Deng, Xiaodong Chen, Sijing Zhao, Simin Su, Bowen Ren, Chuchu Qi, Jialong Li, Mei Fu, Tongtong Gao, Minghan Li, Na Zhou, Shiqian Shen, Wenting Wang, Qian Chen",
       venue: lang === "en" ? "Submitted" : "已投稿",
       year: "",
       doi: "",
       url: "",
     },
     {
-      title: "Anterior cingulate cortex parvalbumin and somatostatin interneurons shape social behavior in male mice",
-      authors: "Chuchu Qi, Wenqi Sima, Honghui Mao, Erling Hu, Junye Ge, Mao Deng, Andi Chen, Weiyi Ye, Qian Xue, Wenting Wang, Qian Chen, Shengxi Wu",
+      title:
+        "Anterior cingulate cortex parvalbumin and somatostatin interneurons shape social behavior in male mice",
+      authors:
+        "Chuchu Qi, Wenqi Sima, Honghui Mao, Erling Hu, Junye Ge, Mao Deng, Andi Chen, Weiyi Ye, Qian Xue, Wenting Wang, Qian Chen, Shengxi Wu",
       venue: "Nature Communications",
       year: "2025",
       doi: "10.1038/s41467-025-59473-z",
       url: "https://www.nature.com/articles/s41467-025-59473-z",
     },
     {
-      title: "An ultra-compact promoter drives widespread neuronal expression in mouse and monkey brains",
-      authors: "Jing Wang, Jia Lin, Yanan Chen, Jie Liu, Qiang Zheng, Mao Deng, Rui Wang, Yang Zhang, Siqi Feng, Zhi Xu, Weiyi Ye, Yu Hu, Jie Duan, Yan Lin, Jian Dai, Yujun Chen, Yan Li, Tao Luo, Qian Chen, Zhi Lu",
+      title:
+        "An ultra-compact promoter drives widespread neuronal expression in mouse and monkey brains",
+      authors:
+        "Jingyi Wang, Jianbang Lin, Yefei Chen, Jing Liu, Qiongping Zheng, Mao Deng, Ruiqi Wang, Yujing Zhang, Shijing Feng, Zhenyan Xu, Weiyi Ye, Yu Hu, Jiamei Duan, Yunping Lin, Ji Dai, Yu Chen, Yuantao Li, Tao Luo, Qian Chen, Zhonghua Lu",
       venue: "Cell Reports",
       year: "2023",
       doi: "10.1016/j.celrep.2023.113348",
@@ -201,32 +328,45 @@ export default function FancyHome() {
     },
   ];
 
-  useDevChecks(pubs);
-
   return (
     <MotionConfig reducedMotion="user">
       <div className="min-h-screen bg-slate-950 text-slate-100 selection:bg-fuchsia-500/50">
         {/* Top bar with language toggle */}
         <div className="fixed right-4 top-4 z-50 flex items-center gap-2 rounded-full border border-white/20 bg-slate-900/80 px-3 py-1 text-xs backdrop-blur">
-          <button onClick={() => setLang(lang === "zh" ? "en" : "zh")} className="hover:text-white text-slate-200">
+          <button
+            onClick={() => setLang(lang === "zh" ? "en" : "zh")}
+            className="hover:text-white text-slate-200"
+          >
             {t.langToggle}
           </button>
         </div>
 
-        {/* 导航栏 / Nav */}
+        {/* Nav */}
         <header className="sticky top-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-slate-950/60">
           <div className="mx-auto max-w-6xl px-4">
             <div className="flex items-center justify-between py-4">
-              <a onClick={() => scrollToId("home")} className="font-semibold uppercase tracking-[0.12em] text-slate-100 cursor-pointer">
+              <a
+                onClick={() => scrollToId("home")}
+                className="font-semibold uppercase tracking-[0.12em] text-slate-100 cursor-pointer"
+              >
                 WEIYI YE
               </a>
               <nav className="hidden gap-6 md:flex">
-                {"about research tech publications cv contact".split(" ").map((id) => (
-                  <button key={id} onClick={() => scrollToId(id)} className="text-base tracking-wide text-slate-200 hover:text-white px-1">
+                {"about research tech publications contact".split(" ").map((id) => (
+                  <button
+                    key={id}
+                    onClick={() => scrollToId(id)}
+                    className="text-base tracking-wide text-slate-200 hover:text-white px-1"
+                  >
                     {t.nav[id as keyof typeof t.nav]}
                   </button>
                 ))}
-                <a href={SCHOLAR_URL} target="_blank" rel="noopener noreferrer" className="text-base tracking-wide text-slate-200 hover:text-white px-1">
+                <a
+                  href={SCHOLAR_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-base tracking-wide text-slate-200 hover:text-white px-1"
+                >
                   {t.nav.scholar}
                 </a>
               </nav>
@@ -234,37 +374,43 @@ export default function FancyHome() {
           </div>
         </header>
 
-        {/* Hero with custom background image */}
-        <section
-          id="home"
-          className="relative flex items-center justify-center py-32 text-center"
-          style={{
-            backgroundImage: "url('/CA1 basal dendrites.png')", // 将你的图片放到 public/bg.jpg
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        >
-          {/* 半透明遮罩保证文字可读 */}
-          <div className="absolute inset-0 bg-black/40" />
-
-          <div className="relative z-10 max-w-2xl px-4">
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-              {t.heroTitlePrefix} <span className="text-fuchsia-300">{t.heroTitleName}</span> {t.heroTitleSuffix}
-            </h1>
-            <p className="mt-4 text-lg text-slate-300">{t.heroSubtitle}</p>
+        {/* Hero: full-width image (contain) + overlay + title */}
+        <section id="home" className="relative overflow-hidden">
+          <div className="relative w-full" style={{ aspectRatio: "2/1" }}>
+            <div
+              ref={bgRef}
+              className="absolute inset-0 will-change-transform"
+              style={{
+                backgroundImage: "url('/hero.webp')", // 建议重命名 public/hero.webp
+                backgroundSize: "95% auto", // 宽度 = 视口宽度，高度按比例
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: "center",
+                backgroundColor: "black",
+                transition: "transform 0.06s linear",
+              }}
+            />
+            <div className="absolute inset-0 bg-black/20" />
+            <div className="absolute inset-0 flex items-start pt-85 justify-center px-4">
+              <div className="max-w-4xl text-center">
+                <h1 className="text-6xl sm:text-7xl font-extrabold leading-tight tracking-tight">
+                  {t.heroTitlePrefix} <span className="text-green-400">{t.heroTitleName}</span> {t.heroTitleSuffix}
+                </h1>
+                <p className="mt-5 text-xl text-slate-300">{t.heroSubtitle}</p>
+              </div>
+            </div>
           </div>
         </section>
 
         {/* About */}
-        <section id="about" className="mx-auto max-w-5xl px-4 py-20">
-          <h2 className="text-2xl font-bold">{t.aboutTitle}</h2>
+        <section id="about" className="mx-auto max-w-6xl px-4 py-20">
+          <h2 className="text-3xl font-bold">{t.aboutTitle}</h2>
           <p className="mt-4 max-w-3xl text-slate-300">{t.aboutBody}</p>
         </section>
 
         {/* Research */}
         <section id="research" className="border-y border-white/10 bg-white/5 py-20">
-          <div className="mx-auto max-w-5xl px-4">
-            <h2 className="text-2xl font-bold">{t.researchTitle}</h2>
+          <div className="mx-auto max-w-6xl px-4">
+            <h2 className="text-3xl font-bold">{t.researchTitle}</h2>
             <ul className="mt-6 list-disc space-y-2 pl-6 text-slate-300">
               {t.researchBullets.map((b: string, i: number) => (
                 <li key={i}>{b}</li>
@@ -274,30 +420,21 @@ export default function FancyHome() {
         </section>
 
         {/* Techniques */}
-        <section id="tech" className="mx-auto max-w-5xl px-4 py-20">
-          <h2 className="text-2xl font-bold">{t.techTitle}</h2>
-          <div className="mt-4 flex flex-wrap gap-2">
-            {t.techTags.map((s: string) => (
-              <span key={s} className="inline-block rounded-full border border-white/20 px-3 py-1 text-sm text-slate-200">
-                {s}
-              </span>
-            ))}
-          </div>
-        </section>
+        <TechSection t={t} />
 
         {/* Timeline */}
         <section id="timeline" className="border-y border-white/10 bg-white/5 py-20">
-          <div className="mx-auto max-w-5xl px-4">
-            <h2 className="text-2xl font-bold">{t.timelineTitle}</h2>
+          <div className="mx-auto max-w-6xl px-4">
+            <h2 className="text-3xl font-bold">{t.timelineTitle}</h2>
             <ResearchTimeline items={t.timelineItems as any} />
           </div>
         </section>
 
         {/* Publications */}
         <section id="publications" className="border-y border-white/10 bg-white/5 py-20">
-          <div className="mx-auto max-w-5xl px-4">
+          <div className="mx-auto max-w-6xl px-4">
             <div className="flex items-baseline justify-between">
-              <h2 className="text-2xl font-bold">{t.publicationsTitle}</h2>
+              <h2 className="text-3xl font-bold">{t.publicationsTitle}</h2>
             </div>
             <div className="mt-2">
               <a
@@ -340,16 +477,10 @@ export default function FancyHome() {
           </div>
         </section>
 
-        {/* CV */}
-        <section id="cv" className="mx-auto max-w-5xl px-4 py-20">
-          <h2 className="text-2xl font-bold">{t.cvTitle}</h2>
-          <p className="mt-4 text-slate-300">{t.cvText}</p>
-        </section>
-
         {/* Contact */}
         <section id="contact" className="border-t border-white/10 py-20">
-          <div className="mx-auto max-w-5xl px-4">
-            <h2 className="text-2xl font-bold">{t.contactTitle}</h2>
+          <div className="mx-auto max-w-6xl px-4">
+            <h2 className="text-3xl font-bold">{t.contactTitle}</h2>
             <div className="mt-6 grid gap-2 text-slate-300 text-[15px]">
               <div>Weiyi Ye</div>
               <div>email: weiyiye0510@gmail.com</div>
