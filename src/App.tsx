@@ -4,12 +4,21 @@ import { MotionConfig, motion } from "framer-motion";
 // ============================
 // Types
 // ============================
+type SkillItem =
+  | string
+  | {
+      label: string;            // 主体文字（会带圆点）
+      note?: string;            // 备注（括号里的内容）
+      breakBeforeNote?: boolean // true 时在备注前换行（同一个 li 内，不会出现第二个圆点）
+    };
+
 export type TechGroup = {
   title: string;
   subtitle?: string;
   note?: string;
-  skills: string[];
+  skills: SkillItem[];
 };
+
 
 // ----------------------------
 // Helpers
@@ -35,7 +44,6 @@ const content: Record<"zh" | "en", any> = {
       tech: "技术技能",
       publications: "论文发表",
       contact: "联系方式",
-      scholar: "学术",
     },
     heroTitlePrefix: "欢迎来到",
     heroTitleName: "叶苇一",
@@ -54,44 +62,51 @@ const content: Record<"zh" | "en", any> = {
     techTitle: "技术技能",
     techGroups: [
       {
-        title: "技术实验操作",
-        note: "包括小鼠灌注取脑、脑组织切片、免疫荧光染色等",
+        title: "基础实验操作",
+        note: "掌握神经生物学常见实验技能，能够满足基础科研需求",
         skills: [
-          "小鼠灌注取脑",
-          "脑组织振动切片",
-          "免疫荧光染色",
-          "动物行为学实验",
-          "基础分子生物学操作",
+          "小鼠灌注与取脑", 
+          "脑组织振动切片", 
+          "免疫荧光染色", 
+          "啮齿类动物行为学实验", 
+          "基础分子生物学实验",
         ],
       },
       {
         title: "显微成像系统",
-        note: "Olympus 显微成像系统（受 Evident 邀请采访问）",
+        note: "曾获 Evident (OLYMPUS) 专访，熟练掌握多类显微成像系统",
         skills: [
-          "FV3000 共聚焦显微镜",
-          "SpinSR 转盘超分辨",
-          "VS200 切片扫描",
-          "FVMPE‑RS 双光子显微成像",
+          "FV3000 共聚焦显微成像",
+          "SpinSR 转盘共聚焦显微成像",
+          "VS200 扫片机",
+          "FVMPE-RS 双光子显微成像",
         ],
       },
       {
-        title: "掌握的编程语言",
-        note: "被罗列的语言均被用于独立搭建过自动化数据处理流程",
-        skills: ["ImageJ Macro", "Matlab", "Python"],
+        title: "编程语言",
+        note: "使用下列语言独立搭建过自动化数据处理与分析流程",
+        skills: ["Python", "MATLAB", "Bonsai", "ImageJ Macro"],
       },
       {
         title: "数据分析工具",
-        skills: ["Imaris", "Prism", "Deeplabcut"],
+        note: "掌握多种数据分析与可视化工具，相关成果已投递或待发表",
+        skills: ["ImageJ", "Imaris", "GraphPad Prism", "DeepLabCut"],
       },
       {
-        title: "工程学技术",
-        note: "通过结合系列技术实现了小鼠行为学范式的制作",
+        title: "工程技术",
+        note: "利用工程技术开发多种实验装置，其中3项已申请专利 (预计2025年1月获批)",
         skills: [
-          "Arduino",
-          "PCB 板绘制 · PCB design",
-          "3D 建模 · 3D modeling",
-          "3D 打印 · 3D printing",
-          "硬件组装及焊接 · Hardware assembly & soldering",
+          "Arduino", 
+          "PCB 设计", 
+          "3D 建模及打印", 
+          "硬件组装及焊接",
+        ],
+      },
+      {
+        title: "其他技术",
+        skills: [
+           { label: "Adobe 套件", note: "Photoshop / Premiere / Illustrator", breakBeforeNote: true },
+           { label: "Microsoft办公软件", note: "Word / PowerPoint / Excel", breakBeforeNote: true },
         ],
       },
     ],
@@ -115,7 +130,6 @@ const content: Record<"zh" | "en", any> = {
       tech: "Techniques",
       publications: "Publications",
       contact: "Contact",
-      scholar: "Scholar",
     },
     heroTitlePrefix: "Welcome to the world inside",
     heroTitleName: "Weiyi Ye",
@@ -134,43 +148,51 @@ const content: Record<"zh" | "en", any> = {
     techTitle: "Techniques & Skills",
     techGroups: [
       {
-        title: "Experimental Techniques",
+        title: "Basic experimental skills",
+        note: "Proficient in essential neurobiology laboratory techniques, sufficient for diverse experimental requirements",
         skills: [
-          "Mouse brain perfusion",
-          "Vibratome tissue sectioning",
-          "Immunofluorescent staining",
-          "Behavioral assays",
-          "Basic molecular biology",
+          "Mouse perfusion and brain extraction",
+          "Vibratome brain tissue sectioning",
+          "Immunofluorescence staining",
+          "Rodent behavioral tests",
+          "Basic molecular biology experiments",
         ],
       },
       {
-        title: "Microscopy Systems",
-        note: "Olympus imaging systems (invited user interview by Evident)",
+        title: "Microscopy",
+        note: "Interviewed by Evident (OLYMPUS); experienced in diverse advanced microscopy platforms",
         skills: [
           "FV3000 confocal microscopy",
-          "Spinning‑disk super‑resolution (SpinSR)",
+          "SpinSR spinning‑disk confocal microscopy",
           "VS200 slide scanner",
           "FVMPE‑RS two‑photon microscopy",
         ],
       },
       {
         title: "Programming Languages",
-        note: "用于搭建自动化数据处理流程",
-        skills: ["ImageJ Macro", "Matlab", "Python"],
+        note: "Applied in developing automated pipelines for data processing and analysis",
+        skills: [ "Python", "MATLAB", "Bonsai", "ImageJ Macro",],
       },
       {
-        title: "Data Analysis Tools",
-        skills: ["Imaris", "Prism", "Deeplabcut"],
+        title: "Data analysis skills",
+        note: "Experienced in analytical and visualization tools, applied to submitted or in-preparation manuscripts",
+        skills: ["ImageJ", "Imaris", "GraphPadPrism", "DeepLabCut"],
       },
       {
-        title: "Engineering Skills",
-        note: "通过结合系列技术实现了小鼠行为学范式的制作",
+        title: "Engineering skills",
+        note: "Applied to design and build custom laboratory devices; three inventions have patent applications under review (expected approval: Jan 2025)",
         skills: [
           "Arduino",
           "PCB design",
-          "3D modeling",
-          "3D printing",
-          "Hardware assembly & soldering",
+          "3D modeling and printing",
+          "Hardware assembly and soldering",
+        ],
+      },
+      {
+        title: "Other skills",
+        skills: [
+           { label: "Adobe Suite", note: "Photoshop / Premiere / Illustrator", breakBeforeNote: true },
+           { label: "Microsoft Office", note: "Word / PowerPoint / Excel", breakBeforeNote: true },
         ],
       },
     ],
@@ -250,11 +272,32 @@ function TechSection({ t }: { t: any }) {
             {group.note && (
               <div className="mt-1 text-slate-500 italic text-xs">{group.note}</div>
             )}
-            <ul className="mt-3 space-y-1 text-slate-200 text-sm list-disc list-inside">
-              {group.skills.map((s, i) => (
-                <li key={i}>{s}</li>
-              ))}
+            <ul className="mt-3 list-disc pl-5 space-y-1 text-sm text-slate-200 marker:text-slate-400">
+              {group.skills.map((s, i) => {
+                // 如果是普通字符串
+                if (typeof s === "string") {
+                  return (
+                    <li key={i} className="-indent-0 pl-2 leading-relaxed">
+                      {s}
+                    </li>
+                  );
+                }
+                // 如果是对象（带 label / note）
+                return (
+                  <li key={i} className="-indent-6 pl-2 leading-relaxed">
+                    <span>{s.label}</span>
+                    {s.note &&
+                      (s.breakBeforeNote ? (
+                        <span className="block pl-6 text-slate-400">{s.note}</span>
+                      ) : (
+                        <span className="text-slate-400"> {s.note}</span>
+                      ))}
+                  </li>
+                );
+              })}
             </ul>
+
+
           </div>
         ))}
       </div>
@@ -279,13 +322,13 @@ export default function App() {
     const onMove = (e: MouseEvent) => {
       const nx = e.clientX / window.innerWidth - 0.5;
       const ny = e.clientY / window.innerHeight - 0.5;
-      const MAX = 10; // px, adjust 6~16
+      const MAX = 20; // px, adjust 6~16
       target.x = nx * MAX;
       target.y = ny * MAX;
     };
     const tick = () => {
-      cur.x += (target.x - cur.x) * 0.08; // easing
-      cur.y += (target.y - cur.y) * 0.08;
+      cur.x += (target.x - cur.x) * 0.1; // easing
+      cur.y += (target.y - cur.y) * 0.1;
       if (bgRef.current) bgRef.current.style.transform = `translate3d(${cur.x}px, ${cur.y}px, 0)`;
       raf = requestAnimationFrame(tick);
     };
@@ -325,6 +368,16 @@ export default function App() {
       year: "2023",
       doi: "10.1016/j.celrep.2023.113348",
       url: "https://www.cell.com/cell-reports/fulltext/S2211-1247(23)01360-8",
+    },
+    {
+      title:
+        "Potential risk of drug-drug interactions of ponatinib via inhibition against human UDP-glucuronosyltransferases",
+      authors:
+        "Weiyi Ye, Zhen Wang, Xin Lv, Hang Yin, Lili Jiang, Zhe Wang, Yong Liu",
+      venue: "Toxicology in Vitro",
+      year: "2023",
+      doi: "10.1016/j.tiv.2023.105664",
+      url: "https://www.sciencedirect.com/science/article/abs/pii/S0887233323001133",
     },
   ];
 
@@ -480,15 +533,29 @@ export default function App() {
         {/* Contact */}
         <section id="contact" className="border-t border-white/10 py-20">
           <div className="mx-auto max-w-6xl px-4">
-            <h2 className="text-3xl font-bold">{t.contactTitle}</h2>
-            <div className="mt-6 grid gap-2 text-slate-300 text-[15px]">
-              <div>Weiyi Ye</div>
-              <div>email: weiyiye0510@gmail.com</div>
-              <div>Zhongshan Institute for Drug Discovery</div>
-              <div>Guangdong, China 524800</div>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="flex flex-col justify-center">
+                <h2 className="text-3xl font-bold mb-4">{t.contactTitle}</h2>
+                <div className="space-y-2 text-slate-300 text-[15px]">
+                  <div>Weiyi Ye</div>
+                  <div>email: weiyiye0510@gmail.com</div>
+                  <div>Zhongshan Institute for Drug Discovery</div>
+                  <div>Guangdong, China 524800</div>
+                </div>
+              </div>
+
+              <div className="flex justify-center items-center">
+                <img
+                  src="/contact.webp"
+                  alt="Contact"
+                  className="rounded-lg shadow-lg w-full h-full object-contain"
+                />
+              </div>
             </div>
+
           </div>
         </section>
+
 
         <footer className="border-t border-white/10 py-10 text-center text-sm text-slate-400">
           {t.footer()}
