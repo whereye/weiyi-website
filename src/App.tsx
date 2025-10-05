@@ -48,16 +48,18 @@ const content: Record<"zh" | "en", any> = {
     heroTitlePrefix: "欢迎来到",
     heroTitleName: "叶苇一",
     heroTitleSuffix: "的脑内世界",
-    heroSubtitle: "神经科学研究者 · 数据分析者 · 工程工具创造者",
+    heroSubtitle: "神经科学 · 数据科学 · 创新工程",
     aboutTitle: "关于我",
     aboutBody: (
-      <>我是 <strong>叶苇一</strong>，研究兴趣包括电路动力学、神经技术方法以及数据驱动的建模。我同时热爱编码、Arduino、3D 打印等工程技能，用以辅助科研与开放科学。</>
+      <>我是 <strong>叶苇一</strong>，一名专注于研究神经系统发育与功能的科研工作者。我的研究结合先进的病毒标记、显微成像与动物行为范式，以及高度量化与自动化的数据分析方法，<strong>从多维度探索大脑的发育过程和发育性疾病对认知和功能的影响</strong>。
+        <br/><br/>除了传统的神经生物学手段，我也将工程学技术融入科研实践——包括 <strong>Arduino 开发、PCB 绘制、3D 建模与打印</strong>等。这些技术帮助我根据实验需求定制专用装置，并搭建创新性的动物行为学范式。
+        <br/><br/>我热衷于将跨学科的技术手段与神经科学相结合，推动更开放、精确且富有创造力的研究。</>
     ),
     researchTitle: "研究方向",
     researchBullets: [
-      "电路生理学 —— 学习与记忆中的群体动力学。",
-      "神经技术方法 —— 开放的实验硬件与协议。",
-      "计算与建模 —— 信号处理与机器学习管线。",
+      "神经元标记与功能成像方法开发",
+      "发育期孤独症模型小鼠的大脑结构与功能研究",
+      "双光子成像相关的行为学与刺激系统设计",
     ],
     techTitle: "技术技能",
     techGroups: [
@@ -70,6 +72,17 @@ const content: Record<"zh" | "en", any> = {
           "免疫荧光染色", 
           "啮齿类动物行为学实验", 
           "基础分子生物学实验",
+        ],
+      },
+      {
+        title: "啮齿类动物手术",
+        note: "具备针对新生小鼠和成年小鼠的多种常用手术操作经验",
+        skills: [
+          "新生鼠脑室注射",
+          "新生鼠面静脉注射",
+          "幼鼠 / 成年鼠颅窗手术",
+          "脑立体定位注射",
+          "成年鼠尾静脉注射",
         ],
       },
       {
@@ -134,16 +147,22 @@ const content: Record<"zh" | "en", any> = {
     heroTitlePrefix: "Welcome to the world inside",
     heroTitleName: "Weiyi Ye",
     heroTitleSuffix: "'s brain",
-    heroSubtitle: "Neuroscience researcher · Data analyst · Builder of tools",
+    heroSubtitle: "Neuroscience · Data Science · Innovation",
     aboutTitle: "About",
     aboutBody: (
-      <>I’m <strong>Weiyi Ye</strong>, focusing on circuit dynamics, neurotech methods, and data‑driven modeling. I enjoy coding, Arduino, and 3D printing to build tools for open science.</>
+      
+      <>I am <strong>Weiyi Ye</strong>, a neuroscience researcher dedicated to studying the development and function of the central nervous system (CNS). My research combines advanced 
+      viral labeling, high-resolution imaging, and behavioral paradigms with highly quantitative and automated data analysis to <strong>explore brain development and the 
+        impact of developmental disorders on cognition and function.</strong>
+        <br/><br/>Beyond traditional neurobiological approaches, I incorporate engineering techniques—such as <strong>Arduino prototyping, PCB design, and 3D modeling and 
+         printing</strong>—to build custom devices and design innovative behavioral paradigms tailored to experimental needs.
+      <br/><br/>I am passionate about integrating cross-disciplinary technologies with neuroscience to advance research that is open, precise, and creative.</>
     ),
     researchTitle: "Research",
     researchBullets: [
-      "Circuit physiology — population dynamics in learning and memory.",
-      "Neurotech methods — open hardware and protocols.",
-      "Computation & modeling — signal processing and machine learning pipelines.",
+      "Development of neuronal labeling and functional imaging methods",
+      "Structural and functional analysis of brain development in autism models",
+      "Design of behavioral and sensory-stimulation systems for two-photon imaging",
     ],
     techTitle: "Techniques & Skills",
     techGroups: [
@@ -156,6 +175,17 @@ const content: Record<"zh" | "en", any> = {
           "Immunofluorescence staining",
           "Rodent behavioral tests",
           "Basic molecular biology experiments",
+        ],
+      },
+      {
+        title: "Rodent surgical skills",
+        note: "Experienced in a variety of surgical techniques for neonatal and adult mice",
+        skills: [
+          "P0 Intracerebroventricular (ICV) injection",          
+          "P0 Intravenous (facial vein) injection",
+          "Cranial window surgery in young and adult mice",
+          "Stereotaxic brain injection",
+          "Adult mouse tail vein injection",
         ],
       },
       {
@@ -176,7 +206,7 @@ const content: Record<"zh" | "en", any> = {
       {
         title: "Data analysis skills",
         note: "Experienced in analytical and visualization tools, applied to submitted or in-preparation manuscripts",
-        skills: ["ImageJ", "Imaris", "GraphPadPrism", "DeepLabCut"],
+        skills: ["ImageJ", "Imaris", "GraphPad Prism", "DeepLabCut"],
       },
       {
         title: "Engineering skills",
@@ -256,7 +286,99 @@ function ResearchTimeline({
     </div>
   );
 }
+function ResearchInteractive({ t }: { t: any }) {
+  // 当前悬停的条目下标（0/1/2），未悬停时为 null
+  const [hovered, setHovered] = useState<number | null>(null);
+  // 让右侧高度与左侧模块一致
+  const leftRef = useRef<HTMLDivElement | null>(null);
+  const [leftHeight, setLeftHeight] = useState<number | null>(null);
 
+  useEffect(() => {
+    if (!leftRef.current) return;
+
+    const el = leftRef.current;
+
+    // 初始测量
+    const measure = () => setLeftHeight(el.getBoundingClientRect().height);
+    measure();
+
+    // 左侧内容发生重排/换行时，同步高度
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+
+    // 窗口大小变化也同步
+    window.addEventListener("resize", measure);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, []);
+
+  return (
+    <section id="research" className="border-y border-white/10 bg-white/5 py-20">
+      <div className="mx-auto max-w-6xl px-4">
+        {/* 用两列网格：左边（标题+列表）与右边（预览图） */}
+        <div className="grid md:grid-cols-2 gap-8 items-stretch">
+          {/* 左侧：标题 + 列表（整体作为一个模块） */}
+          <div ref={leftRef} className="flex flex-col justify-center">
+            <h2 className="text-3xl font-bold">{t.researchTitle}</h2>
+
+            <ul className="mt-6 space-y-3 text-slate-300">
+              {t.researchBullets.map((b: string, i: number) => (
+                <li key={i} className="relative">
+                  {/* 用 button 包住文本以获得更好的可交互性（也可用 div） */}
+                  <button
+                    type="button"
+                    onMouseEnter={() => setHovered(i)}
+                    onMouseLeave={() => setHovered(null)}
+                    className="group relative w-full text-left pb-1"
+                  >
+                    {/* 行文字 */}
+                    <span className="inline-block">{b}</span>
+
+                    {/* 自定义下划线：从文字“中部”开始向两侧展开 */}
+                    <span
+                      className="
+                        pointer-events-none
+                        absolute left-1/2 bottom-0 h-[2px] w-full -translate-x-1/2
+                        origin-center scale-x-0
+                        bg-slate-300
+                        transition-transform duration-300 ease-out
+                        group-hover:scale-x-100
+                      "
+                    />
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* 右侧：预览图区域（与左侧等高；无灰框） */}
+          <div
+            className="flex items-center justify-center"
+            style={{ height: leftHeight ?? undefined }}
+          >
+            {hovered !== null && (
+              <img
+                src={
+                  hovered === 0
+                    ? "/ResearchStrategy.webp"
+                    : hovered === 1
+                    ? "/ResearchBrain.webp"
+                    : "/ResearchTreadmill.webp"
+                }
+                alt="Research preview"
+                /* 等比缩放，不裁切、不溢出；当某一边先到极限时，另一边按比例收缩 */
+                className="block max-h-full max-w-full object-contain"
+              />
+            )}
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
+}
 function TechSection({ t }: { t: any }) {
   const groups = t.techGroups as TechGroup[];
   return (
@@ -460,17 +582,9 @@ export default function App() {
           <p className="mt-4 max-w-3xl text-slate-300">{t.aboutBody}</p>
         </section>
 
-        {/* Research */}
-        <section id="research" className="border-y border-white/10 bg-white/5 py-20">
-          <div className="mx-auto max-w-6xl px-4">
-            <h2 className="text-3xl font-bold">{t.researchTitle}</h2>
-            <ul className="mt-6 list-disc space-y-2 pl-6 text-slate-300">
-              {t.researchBullets.map((b: string, i: number) => (
-                <li key={i}>{b}</li>
-              ))}
-            </ul>
-          </div>
-        </section>
+        {/* Research (interactive) */}
+        <ResearchInteractive t={t} />
+
 
         {/* Techniques */}
         <TechSection t={t} />
@@ -538,7 +652,7 @@ export default function App() {
                 <h2 className="text-3xl font-bold mb-4">{t.contactTitle}</h2>
                 <div className="space-y-2 text-slate-300 text-[15px]">
                   <div>Weiyi Ye</div>
-                  <div>email: weiyiye0510@gmail.com</div>
+                  <div>weiyiye0510@gmail.com</div>
                   <div>Zhongshan Institute for Drug Discovery</div>
                   <div>Guangdong, China 524800</div>
                 </div>
