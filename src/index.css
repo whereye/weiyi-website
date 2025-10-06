@@ -1,1 +1,21 @@
 @import "tailwindcss";
+/* --- Carousel scrollbar (More About Me) --- */
+.more-scroller::-webkit-scrollbar {
+  height: 6px;              /* 细一点 */
+}
+.more-scroller::-webkit-scrollbar-track {
+  background: #0b1220;      /* 贴近 slate-950 背景 */
+}
+.more-scroller::-webkit-scrollbar-thumb {
+  background: #334155;      /* slate-700ish */
+  border-radius: 9999px;
+}
+.more-scroller:hover::-webkit-scrollbar-thumb {
+  background: #475569;      /* hover 稍亮一点 */
+}
+
+/* Firefox */
+.more-scroller {
+  scrollbar-width: thin;
+  scrollbar-color: #334155 #0b1220;
+}

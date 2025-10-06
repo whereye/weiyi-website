@@ -43,13 +43,16 @@ const content: Record<"zh" | "en", any> = {
       research: "研究方向",
       tech: "技术技能",
       publications: "论文发表",
+      timeline: "科研时间线",
       contact: "联系方式",
     },
+    aboutPhotoNote: "2024/12/22 于厦门半程马拉松",
     heroTitlePrefix: "欢迎来到",
     heroTitleName: "叶苇一",
     heroTitleSuffix: "的脑内世界",
     heroSubtitle: "神经科学 · 数据科学 · 创新工程",
     aboutTitle: "关于我",
+    more: "更多",
     aboutBody: (
       <>我是 <strong>叶苇一</strong>，一名专注于研究神经系统发育与功能的科研工作者。我的研究结合先进的病毒标记、显微成像与动物行为范式，以及高度量化与自动化的数据分析方法，<strong>从多维度探索大脑的发育过程和发育性疾病对认知和功能的影响</strong>。
         <br/><br/>除了传统的神经生物学手段，我也将工程学技术融入科研实践——包括 <strong>Arduino 开发、PCB 绘制、3D 建模与打印</strong>等。这些技术帮助我根据实验需求定制专用装置，并搭建创新性的动物行为学范式。
@@ -125,12 +128,38 @@ const content: Record<"zh" | "en", any> = {
     ],
     timelineTitle: "科研时间线",
     timelineItems: [
-      { year: "2022/07", title: "加入陈迁课题组", desc: "建立动物行为学分析系统" },
-      { year: "2023/08", title: "第16届中国神经科学年会墙报展示", desc: "阐明Chd2缺失对触觉灵敏性的影响" },
-      { year: "2024/12", title: "搭建小鼠跑步机装置", desc: "在双光子成像条件下观察被动运动偶联信号" },
-      { year: "2025/09", title: "投递文章：AAV在发育期快速表达", desc: "为出生后发育期研究提供新策略与新方法" },
+      { year: "2022/07", title: "加入陈迁实验室", desc: "开启科研之路，系统学习神经发育研究的实验方法与理念" },
+      { year: "2022/08", title: "建立行为学分析系统", desc: "自主搭建小鼠行为学分析系统，实现对旷场与新物体识别等实验的自动识别与量化" },
+      { year: "2022/11", title: "触须测试：孤独症模型小鼠的触觉敏感性研究", desc: "通过触须测试探究孤独症模型小鼠的感知觉变化，为后续行为学研究奠定基础" },
+      { year: "2023/06", title: "本科毕业（大连理工大学）", desc: "以专业第一的成绩完成本科学业，正式进入科研深耕阶段" },
+      { year: "2023/07", title: "CNS 2023 墙报展示", desc: "首次以第一作者身份在学术会议上展示研究成果" },
+      { year: "2023/10", title: "第一篇论文见刊", desc: "早期研究成果发表于国际期刊，探讨了 Ponatinib 的潜在药物相互作用风险" },
+      { year: "2024/04", title: "设计多天龄小鼠固定器（专利已申请）", desc: "设计标准化固定器，实现不同发育阶段小鼠的高稳定成像" },
+      { year: "2024/05", title: "行为学系统硬件升级（专利已申请）", desc: "自主设计行为学硬件，实现对光、气味与声音的控制，提升实验稳定性与重复性" },
+      { year: "2024/12", title: "搭建小鼠跑步机（专利已申请）", desc: "搭建双光子兼容跑步机系统，实现运动中脑活动的成像观测" },
+      { year: "2025/02", title: "引入新一代 3D 打印机", desc: "新设备大幅提升建模效率，助力定制化科研工具的快速制作" },
+      { year: "2025/03", title: "基于ImageJ Macro自动化全脑荧光分析", desc: "开发自动化全脑荧光数据分析流程" },
+      { year: "2025/03", title: "基于DeepLabCut的行为学优化", desc: "引入机器学习算法，优化小鼠行为识别精度" },
+      { year: "2025/04", title: "搭建 automated von Frey 装置", desc: "实现双光子显微条件下的机械刺激输入系统" },
+      { year: "2025/07", title: "提交三项实用新型专利", desc: "三项自主设计装置已申请专利，涵盖成像、行为与固定系统" },
+      { year: "2025/09", title: "文章投递 & CNS 2025 墙报展示", desc: "向高水平期刊投稿并在国际会议上展示最新研究成果" },
+
     ],
     publicationsTitle: "论文发表",
+    moreTitle: "更多关于我",
+    hobbies: [
+      { id: "Marathon",      title: "马拉松",  note: "2024年厦门环东半马" },
+      { id: "Climbing",      title: "攀岩",    note: "户外顶绳运动攀岩" },
+      { id: "Bouldering",    title: "抱石",    note: "室内抱石攀岩" },
+      { id: "Hiking",        title: "徒步",    note: "安利给大家福州的白云洞徒步线路" },
+      { id: "RailingRace",   title: "越野赛",  note: "真的超级累，所以没有自己的图" },
+      { id: "Spartan",       title: "斯巴达",  note: "好玩爱玩下次还玩" },
+      { id: "Cycling",       title: "骑行",    note: "为了去健身房所以买了辆自行车" },
+      { id: "Swimming",      title: "游泳",    note: "愈发有种报名铁人三项的冲动" },
+      { id: "SkateBoarding", title: "滑板",    note: "滑板代步真的很爽" },
+      { id: "Piano",         title: "钢琴",    note: "好想弹钢琴啊可是现在条件不允许" },
+      { id: "Cello",         title: "大提琴",  note: "我高中可是管弦乐团大提琴首席，大提琴是世界上最好的乐器！" },
+    ],
     contactTitle: "联系方式",
     footer: () => `© ${new Date().getFullYear()} Weiyi Ye`,
     langToggle: "English",
@@ -142,13 +171,16 @@ const content: Record<"zh" | "en", any> = {
       research: "Research",
       tech: "Techniques",
       publications: "Publications",
+      timeline: "Research Timeline",
       contact: "Contact",
     },
+    aboutPhotoNote: "2024/12/22 @ Xiamen Half Marathon",
     heroTitlePrefix: "Welcome to the world inside",
     heroTitleName: "Weiyi Ye",
     heroTitleSuffix: "'s brain",
     heroSubtitle: "Neuroscience · Data Science · Innovation",
     aboutTitle: "About",
+    more: "More",
     aboutBody: (
       
       <>I am <strong>Weiyi Ye</strong>, a neuroscience researcher dedicated to studying the development and function of the central nervous system (CNS). My research combines advanced 
@@ -228,12 +260,38 @@ const content: Record<"zh" | "en", any> = {
     ],
     timelineTitle: "Research Timeline",
     timelineItems: [
-      { year: "2022/07", title: "Joined Prof. Chen’s lab", desc: "Built animal behavior analysis system" },
-      { year: "2023/08", title: "CNS 2023 poster", desc: "CHD2 loss and tactile sensitivity in rodents" },
-      { year: "2024/12", title: "Treadmill rig", desc: "Observed coupling signals under 2P imaging" },
-      { year: "2025/09", title: "Manuscript: rapid AAV expression in development", desc: "New strategies for postnatal studies" },
+      { year: "2022/07", title: "Joined Dr. Qian Chen’s Laboratory", desc: "Began scientific training in developmental neuroscience and laboratory techniques" },
+      { year: "2022/08", title: "Established a Behavioral Analysis System", desc: "Developed a system capable of identifying and quantifying mouse behaviors in arena-based tests such as the Open Field and Novel Object tests" },
+      { year: "2022/11", title: "Whisker Detection Task: Tactile Sensitivity in ASD Model", desc: "Investigated tactile hypersensitivity in autism model mice using whisker-based behavioral paradigms" },
+      { year: "2023/06", title: "Bachelor’s Graduation (Dalian University of Technology)", desc: "Graduated first in major, laying the foundation for professional neuroscience research" },
+      { year: "2023/07", title: "Poster Presentation at CNS 2023", desc: "Presented a poster on developmental neural circuit imaging at the Cognitive Neuroscience Society 2023 Meeting" },
+      { year: "2023/10", title: "First Paper Published", desc: "Published the first research paper (based on 2021–2022 work) on the potential drug–drug interaction (DDI) risk of Ponatinib" },      
+      { year: "2024/04", title: "Designed Multi-Age Mouse Holder (Patent Pending)", desc: "Created a standardized holder adaptable for mice of various postnatal ages, improving stability in two-photon imaging" },
+      { year: "2024/05", title: "Upgraded Hardware of Behavior Tests (Patent Pending)", desc: "Enhanced behavior tests setup with custom hardware for precise control of illumination, odor, and auditory stimuli" },
+      { year: "2024/12", title: "Built a Mouse Treadmill (Patent Pending)", desc: "Constructed a two-photon compatible treadmill to monitor neural calcium dynamics during passive locomotion" },
+      { year: "2025/02", title: "Introduced a New-Generation 3D Printer", desc: "Implemented a high-precision 3D printer to accelerate design and fabrication of research tools" },
+      { year: "2025/03", title: "Automated Whole-Brain Analysis", desc: "Developed an ImageJ Macro pipeline for fluorescence quantification" },
+      { year: "2025/03", title: "Behavioral Optimization", desc: "Integrated DeepLabCut for supervised behavioral tracking" },
+      { year: "2025/04", title: "Built Automated von Frey System", desc: "Designed a von Frey stimulation setup compatible with two-photon imaging for mechanical sensory input" },
+      { year: "2025/07", title: "Filed Three Utility Model Patents", desc: "Filed patents covering mouse treadmill, behavioral chamber, and head-fixation devices" },
+      { year: "2025/09", title: "Manuscript Submission & CNS 2025 Poster", desc: "Submitted Rapid AAV Expression in Development and presented a poster at CNS 2025" },
     ],
     publicationsTitle: "Publications",
+    moreTitle: "More About Me",
+    hobbies: [
+      { id: "Marathon",      title: "Marathon",      note: "Xiamen Half Marathon 2024" },
+      { id: "Climbing",      title: "Climbing",      note: "Outdoor top-rope climbing" },
+      { id: "Bouldering",    title: "Bouldering",    note: "The perfect mix of power, focus, and fun" },
+      { id: "Hiking",        title: "Hiking",        note: "Highly recommend the Baiyun Cave trail" },
+      { id: "RailingRace",   title: "Trail Running", note: "It was exhausting… so no photos this time." },
+      { id: "Spartan",       title: "Spartan Race",  note: "Tough but fun, I’d totally do it again!" },
+      { id: "Cycling",       title: "Cycling",       note: "Bought a bike just to get to the gym, now I love the ride itself" },
+      { id: "Swimming",      title: "Swimming",      note: "Feeling an urge to sign up for a triathlon" },
+      { id: "SkateBoarding", title: "Skateboarding", note: "Skateboarding as daily transport" },
+      { id: "Piano",         title: "Piano",         note: "Really miss playing the piano" },
+      { id: "Cello",         title: "Cello",         note: "I was the principal cellist in my high school orchestra!" },
+    ],
+
     contactTitle: "Contact",
     footer: () => `© ${new Date().getFullYear()} Weiyi Ye`,
     langToggle: "中文",
@@ -262,7 +320,7 @@ function ResearchTimeline({
 }) {
   const data = items ?? [];
   return (
-    <div className="relative mx-auto max-w-4xl">
+    <div className="relative mx-auto max-w-5xl">
       <div className="absolute left-4 top-0 bottom-0 w-px bg-white/10 md:left-1/2" />
       <div className="space-y-8">
         {data.map((it, i) => (
@@ -427,6 +485,117 @@ function TechSection({ t }: { t: any }) {
   );
 }
 
+function MoreAboutMe({ t }: { t: any }) {
+  
+  const items: Array<{ id: string; title: string; note: string }> = t.hobbies ?? [];
+  const scrollerRef = useRef<HTMLDivElement | null>(null);
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const firstCardRef = useRef<HTMLDivElement | null>(null);
+
+  // 一次滚动 = 一张卡片的宽度 + 两卡片之间的 gap
+  const getScrollStep = () => {
+    const track = trackRef.current;
+    const card = firstCardRef.current;
+    if (!track || !card) return 0;
+    const gap = parseFloat(getComputedStyle(track).gap || "0");
+    return card.clientWidth + gap;
+  };
+
+  const scrollByCards = (n: number) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const step = el.clientWidth * 0.4; // 一次滚动视口的 80%
+    el.scrollBy({ left: n * step, behavior: "smooth" });
+  };
+
+
+
+  return (
+    <section id="more" className="border-y border-white/10 bg-white/5 py-20">
+      <div className="mx-auto max-w-6xl px-4">
+        <div className="flex items-center justify-between">
+          <h2 className="text-3xl font-bold">{t.moreTitle}</h2>
+          <div className="hidden md:flex gap-2">
+            <button
+              onClick={() => scrollByCards(-1)}
+              className="rounded-full border border-white/20 bg-white/10 hover:bg-white/20 px-3 py-1.5 transition"
+              aria-label="Prev"
+            >
+              ‹
+            </button>
+            <button
+              onClick={() => scrollByCards(1)}
+              className="rounded-full border border-white/20 bg-white/10 hover:bg-white/20 px-3 py-1.5 transition"
+              aria-label="Next"
+            >
+              ›
+            </button>
+          </div>
+        </div>
+
+        {/* 走马灯 */}
+        <div className="relative mt-6">
+          {/* 左右按钮（移动端隐藏） */}
+          <button
+            onClick={() => scrollByCards(-1)}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 hidden md:inline-flex rounded-full border border-white/20 bg-slate-900/70 hover:bg-slate-900/90 px-3 py-1.5"
+            aria-label="Prev"
+          >
+            ‹
+          </button>
+          <button
+            onClick={() => scrollByCards(1)}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 hidden md:inline-flex rounded-full border border-white/20 bg-slate-900/70 hover:bg-slate-900/90 px-3 py-1.5"
+            aria-label="Next"
+          >
+            ›
+          </button>
+
+          {/* 横向滚动容器 */}
+          <div
+            ref={scrollerRef}
+            className="overflow-x-auto snap-x snap-mandatory more-scroller"
+          >
+            
+
+            <div ref={trackRef} className="flex gap-6 px-2">
+              {items.map((it, i) => (
+                <div
+                  key={it.id}
+                  ref={i === 0 ? firstCardRef : null}  // 如果你还用“按卡片宽度滚动”，保留首张 ref
+                  className="shrink-0 snap-start flex-none"  // ❗不再用 basis-%，让卡片按内容宽度自适应
+                >
+                  {/* 让图片与文字整体按内容收缩宽度 */}
+                  <div className="inline-flex flex-col items-center">
+                    {/* 统一高度；宽度由图片自然决定（横图更宽、竖图更窄） */}
+                    <div className="h-64 md:h-72 lg:h-80 flex items-center justify-center">
+                      <img
+                        src={`/${it.id}.webp`}
+                        alt={it.title}
+                        className="h-full w-auto object-contain"
+                      />
+                    </div>
+
+                    {/* 文案宽度随图片自然宽度，不再占满整张卡片 */}
+                    <div className="pt-2 text-center">
+                      <div className="font-medium">{it.title}</div>
+                      <div className="mt-1 text-sm text-slate-400">{it.note}</div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+
+              {/* 尾部留白，保证 3.5 张效果不被压满 */}
+              <div className="shrink-0 basis-6" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
 // ============================
 // Main App (default export)
 // ============================
@@ -527,7 +696,7 @@ export default function App() {
                 WEIYI YE
               </a>
               <nav className="hidden gap-6 md:flex">
-                {"about research tech publications contact".split(" ").map((id) => (
+                {"about research publications tech timeline more contact".split(" ").map((id) => (
                   <button
                     key={id}
                     onClick={() => scrollToId(id)}
@@ -579,24 +748,33 @@ export default function App() {
         {/* About */}
         <section id="about" className="mx-auto max-w-6xl px-4 py-20">
           <h2 className="text-3xl font-bold">{t.aboutTitle}</h2>
-          <p className="mt-4 max-w-3xl text-slate-300">{t.aboutBody}</p>
+
+          {/* 用响应式的flex：小屏竖排，大屏左右布局。左侧固定宽度，右侧自适应 */}
+          <div className="mt-4 flex flex-col md:flex-row gap-8 items-start">
+            {/* 左侧：文字（固定最大宽度，不被挤压） */}
+            <div className="max-w-3xl md:flex-none">
+              <p className="text-slate-300">{t.aboutBody}</p>
+            </div>
+
+            {/* 右侧：图片（占用剩余空间） */}
+            <div className="md:flex-1 w-full">
+              <div className="w-full">
+                <img
+                  src="/WeiyiYe.webp"
+                  alt="Weiyi Ye"
+                  className="w-full h-auto aspect-[4/3] object-contain rounded-xl shadow-lg"
+                />
+              </div>
+              <div className="mt-3 text-sm text-slate-400 text-center">
+                {/** 中英双语说明 **/}
+                {t.aboutPhotoNote}
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* Research (interactive) */}
         <ResearchInteractive t={t} />
-
-
-        {/* Techniques */}
-        <TechSection t={t} />
-
-        {/* Timeline */}
-        <section id="timeline" className="border-y border-white/10 bg-white/5 py-20">
-          <div className="mx-auto max-w-6xl px-4">
-            <h2 className="text-3xl font-bold">{t.timelineTitle}</h2>
-            <ResearchTimeline items={t.timelineItems as any} />
-          </div>
-        </section>
-
         {/* Publications */}
         <section id="publications" className="border-y border-white/10 bg-white/5 py-20">
           <div className="mx-auto max-w-6xl px-4">
@@ -643,6 +821,21 @@ export default function App() {
             </ol>
           </div>
         </section>
+
+        {/* Techniques */}
+        <TechSection t={t} />
+
+        {/* Timeline */}
+        <section id="timeline" className="border-y border-white/10 bg-white/5 py-20">
+          <div className="mx-auto max-w-6xl px-4">
+            <h2 className="text-3xl font-bold">{t.timelineTitle}</h2>
+            <ResearchTimeline items={t.timelineItems as any} />
+          </div>
+        </section>
+
+        {/* More about me */}
+        <MoreAboutMe t={t} />
+
 
         {/* Contact */}
         <section id="contact" className="border-t border-white/10 py-20">
