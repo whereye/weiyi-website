@@ -492,15 +492,6 @@ function MoreAboutMe({ t }: { t: any }) {
   const trackRef = useRef<HTMLDivElement | null>(null);
   const firstCardRef = useRef<HTMLDivElement | null>(null);
 
-  // 一次滚动 = 一张卡片的宽度 + 两卡片之间的 gap
-  const getScrollStep = () => {
-    const track = trackRef.current;
-    const card = firstCardRef.current;
-    if (!track || !card) return 0;
-    const gap = parseFloat(getComputedStyle(track).gap || "0");
-    return card.clientWidth + gap;
-  };
-
   const scrollByCards = (n: number) => {
     const el = scrollerRef.current;
     if (!el) return;
