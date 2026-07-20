@@ -843,8 +843,7 @@ export default function App() {
                 <div className="space-y-2 text-slate-300 text-[15px]">
                   <div>Weiyi Ye</div>
                   <div>weiyiye0510@gmail.com</div>
-                  <div>Zhongshan Institute for Drug Discovery</div>
-                  <div>Guangdong, China 524800</div>
+                  <div>Fuzhou, Fujian, China 350007</div>
                 </div>
               </div>
 
