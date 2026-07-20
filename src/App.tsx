@@ -148,6 +148,9 @@ const content: Record<"zh" | "en", any> = {
     publicationsTitle: "论文发表",
     moreTitle: "更多关于我",
     hobbies: [
+      { id: "EarthOL",       title: "探索地球OL", note: "探索地球Online" },
+      { id: "Diving",        title: "潜水",    note: "探索地球除陆地外的71%空间" },
+      { id: "Surfing",       title: "冲浪",    note: "那一刻，世界上只有我和那一片浪壁（但是它打人很疼）" },
       { id: "Marathon",      title: "马拉松",  note: "2024年厦门环东半马" },
       { id: "Climbing",      title: "攀岩",    note: "户外顶绳运动攀岩" },
       { id: "Bouldering",    title: "抱石",    note: "室内抱石攀岩" },
@@ -279,6 +282,9 @@ const content: Record<"zh" | "en", any> = {
     publicationsTitle: "Publications",
     moreTitle: "More About Me",
     hobbies: [
+      { id: "EarthOL",       title: "Exploring EarthOL", note: "Exploring Earth Online" },
+      { id: "Diving",        title: "Diving",        note: "Exploring the 71% of Earth that lies beyond land" },
+      { id: "Surfing",       title: "Surfing",       note: "For a moment, it’s just me and the wave" },
       { id: "Marathon",      title: "Marathon",      note: "Xiamen Half Marathon 2024" },
       { id: "Climbing",      title: "Climbing",      note: "Outdoor top-rope climbing" },
       { id: "Bouldering",    title: "Bouldering",    note: "The perfect mix of power, focus, and fun" },
