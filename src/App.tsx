@@ -143,6 +143,10 @@ const content: Record<"zh" | "en", any> = {
       { year: "2025/04", title: "搭建 automated von Frey 装置", desc: "实现双光子显微条件下的机械刺激输入系统" },
       { year: "2025/07", title: "提交三项实用新型专利", desc: "三项自主设计装置已申请专利，涵盖成像、行为与固定系统" },
       { year: "2025/09", title: "文章投递 & CNS 2025 墙报展示", desc: "向高水平期刊投稿并在国际会议上展示最新研究成果" },
+      { year: "2026/05", title: ""},
+      { year: "2026/05", title: ""},
+      { year: "2026/05", title: ""},
+      { year: "2026/05", title: ""},
 
     ],
     publicationsTitle: "论文发表",
@@ -629,13 +633,23 @@ export default function App() {
   const pubs = [
     {
       title:
-        "Rapid Neuronal Labeling and Functional Imaging in the Developing Mouse Brain with AAV-PHP.eB",
+        "Rapid neuronal labeling and functional imaging in the developing mouse brain with AAV-PHP.eB",
       authors:
-        "Weiyi Ye, Mao Deng, Xiaodong Chen, Sijing Zhao, Simin Su, Bowen Ren, Chuchu Qi, Jialong Li, Mei Fu, Tongtong Gao, Minghan Li, Na Zhou, Shiqian Shen, Wenting Wang, Qian Chen",
-      venue: lang === "en" ? "Submitted" : "已投稿",
-      year: "",
-      doi: "",
-      url: "",
+        "Weiyi Ye, Mao Deng, Sijing Zhao, Xiaodong Chen, Simin Su, Xiaoqin Lian, Bowen Ren, Chuchu Qi, Jialong Li, Mei Fu, Tongtong Gao, Zhihan Bai, Minghan Li, Dihan Lu, Na Zhou, Shiqian Shen, Wenting Wang, Qian Chen",
+      venue: "Cell Reports Methods",
+      year: "2026",
+      doi: "10.1016/j.crmeth.2026.101472",
+      url: "https://www.cell.com/cell-reports-methods/fulltext/S2667-2375(26)00172-4",
+    },
+    {
+      title:
+        "A modified FLIT-B model of trigeminal neuralgia reveals anterior cingulate cortex involvement in anxiety-like behavior in mice",
+      authors:
+        "Xiaoqin Lian, Taoxia Xie, Chen Chen, Jing Deng, Sijing Zhao, Tongtong Gao, Mei Fu, Weiyi Ye, Kunxin Yang, Na Zhou, Lei Tang, Dihan Lu, Xia Feng, Shiqian Shen, Qian Chen",
+      venue: "The Journal of Headache and Pain",
+      year: "2026",
+      doi: "10.1186/s10194-026-02394-z",
+      url: "https://link.springer.com/article/10.1186/s10194-026-02394-z",
     },
     {
       title:
