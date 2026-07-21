@@ -56,7 +56,8 @@ const content: Record<"zh" | "en", any> = {
     aboutBody: (
       <>我是 <strong>叶苇一</strong>，一名专注于研究神经系统发育与功能的科研工作者。我的研究结合先进的病毒标记、显微成像与动物行为范式，以及高度量化与自动化的数据分析方法，<strong>从多维度探索大脑的发育过程和发育性疾病对认知和功能的影响</strong>。
         <br/><br/>除了传统的神经生物学手段，我也将工程学技术融入科研实践——包括 <strong>Arduino 开发、PCB 绘制、3D 建模与打印</strong>等。这些技术帮助我根据实验需求定制专用装置，并搭建创新性的动物行为学范式。
-        <br/><br/>我热衷于将跨学科的技术手段与神经科学相结合，推动更开放、精确且富有创造力的研究。</>
+        <br/><br/>我热衷于将跨学科的技术手段与神经科学相结合，推动更开放、精确且富有创造力的研究。
+        <br/><br/>科研之外，我还热衷于探索地球Online这个游戏。已解锁中国、日本、法国、意大利、瑞士、西班牙等8个国家；已解锁潜水、冲浪、攀岩、滑板等多种运动，和钢琴、大提琴等多种乐器。</>
     ),
     researchTitle: "研究方向",
     researchBullets: [
@@ -133,21 +134,22 @@ const content: Record<"zh" | "en", any> = {
       { year: "2022/11", title: "触须测试：孤独症模型小鼠的触觉敏感性研究", desc: "通过触须测试探究孤独症模型小鼠的感知觉变化，为后续行为学研究奠定基础" },
       { year: "2023/06", title: "本科毕业（大连理工大学）", desc: "以专业第一的成绩完成本科学业，正式进入科研深耕阶段" },
       { year: "2023/07", title: "CNS 2023 墙报展示", desc: "首次以第一作者身份在学术会议上展示研究成果" },
-      { year: "2023/10", title: "第一篇论文见刊", desc: "早期研究成果发表于国际期刊，探讨了 Ponatinib 的潜在药物相互作用风险" },
+      { year: "2023/10", title: "第一篇第一作者文章，发表于Toxicology in Vitro", desc: "评估 Ponatinib 对人源 UGT 酶的抑制作用，并预测其潜在药物相互作用风险", url:"https://www.sciencedirect.com/science/article/abs/pii/S0887233323001133" },
+      { year: "2023/11", title: "参与发表文章于Cell Reports", desc: "参与超短神经元启动子研究，负责部分新生鼠注射相关实验", url:"https://www.cell.com/cell-reports/fulltext/S2211-1247(23)01360-8" },
       { year: "2024/04", title: "设计多天龄小鼠固定器（专利已申请）", desc: "设计标准化固定器，实现不同发育阶段小鼠的高稳定成像" },
-      { year: "2024/05", title: "行为学系统硬件升级（专利已申请）", desc: "自主设计行为学硬件，实现对光、气味与声音的控制，提升实验稳定性与重复性" },
-      { year: "2024/12", title: "搭建小鼠跑步机（专利已申请）", desc: "搭建双光子兼容跑步机系统，实现运动中脑活动的成像观测" },
-      { year: "2025/02", title: "引入新一代 3D 打印机", desc: "新设备大幅提升建模效率，助力定制化科研工具的快速制作" },
+      { year: "2024/05", title: "行为学系统硬件升级（专利已授权）", desc: "自主设计行为学硬件，实现对光、气味与声音的控制，提升实验稳定性与重复性" },
+      { year: "2024/12", title: "搭建小鼠跑步机（专利已授权）", desc: "搭建双光子兼容跑步机系统，实现运动中脑活动的成像观测" },
       { year: "2025/03", title: "基于ImageJ Macro自动化全脑荧光分析", desc: "开发自动化全脑荧光数据分析流程" },
       { year: "2025/03", title: "基于DeepLabCut的行为学优化", desc: "引入机器学习算法，优化小鼠行为识别精度" },
       { year: "2025/04", title: "搭建 automated von Frey 装置", desc: "实现双光子显微条件下的机械刺激输入系统" },
+      { year: "2025/04", title: "参与发表文章于Nat Commun", desc: "参与前扣带皮层 PV/SST 中间神经元调控社交行为的研究，并完成部分数据分析工作", url:"https://www.nature.com/articles/s41467-025-59473-z"},
       { year: "2025/07", title: "提交三项实用新型专利", desc: "三项自主设计装置已申请专利，涵盖成像、行为与固定系统" },
       { year: "2025/09", title: "文章投递 & CNS 2025 墙报展示", desc: "向高水平期刊投稿并在国际会议上展示最新研究成果" },
-      { year: "2026/05", title: ""},
-      { year: "2026/05", title: ""},
-      { year: "2026/05", title: ""},
-      { year: "2026/05", title: ""},
-
+      { year: "2026/02", title: "获得并接受UTSW的PhD offer"},
+      { year: "2026/03", title: "实用新型专利获授权", desc: "啮齿类动物行为学测试实验箱专利获得授权"},
+      { year: "2026/05", title: "参与发表文章于The J Headache Pain", desc:"参与改良 FLIT-B 三叉神经痛模型研究，负责双光子与光纤记录数据的分析和作图", url: "https://link.springer.com/article/10.1186/s10194-026-02394-z"},
+      { year: "2026/06", title: "以第一作者发表文章于Cell Reports Methods", desc:"建立发育期小鼠快速神经元标记与功能成像方法", url: "https://www.cell.com/cell-reports-methods/fulltext/S2667-2375(26)00172-4"},
+      { year: "2026/07", title: "实用新型专利获授权", desc: "头部固定实验鼠的被动跑步装置（头部固定小鼠跑步机）专利获得授权"},
     ],
     publicationsTitle: "论文发表",
     moreTitle: "更多关于我",
@@ -195,7 +197,8 @@ const content: Record<"zh" | "en", any> = {
         impact of developmental disorders on cognition and function.</strong>
         <br/><br/>Beyond traditional neurobiological approaches, I incorporate engineering techniques—such as <strong>Arduino prototyping, PCB design, and 3D modeling and 
          printing</strong>—to build custom devices and design innovative behavioral paradigms tailored to experimental needs.
-      <br/><br/>I am passionate about integrating cross-disciplinary technologies with neuroscience to advance research that is open, precise, and creative.</>
+      <br/><br/>I am passionate about integrating cross-disciplinary technologies with neuroscience to advance research that is open, precise, and creative.
+      <br/><br/>Beyond research, I am also passionate about exploring EarthOL, the open-world game we all live in. So far, I have unlocked eight countries, including China, Japan, France, Italy, Switzerland, and Spain, along with activities such as diving, surfing, and climbing, as well as instruments such as the piano and cello.</>
     ),
     researchTitle: "Research",
     researchBullets: [
@@ -272,16 +275,22 @@ const content: Record<"zh" | "en", any> = {
       { year: "2022/11", title: "Whisker Detection Task: Tactile Sensitivity in ASD Model", desc: "Investigated tactile hypersensitivity in autism model mice using whisker-based behavioral paradigms" },
       { year: "2023/06", title: "Bachelor’s Graduation (Dalian University of Technology)", desc: "Graduated first in major, laying the foundation for professional neuroscience research" },
       { year: "2023/07", title: "Poster Presentation at CNS 2023", desc: "Presented a poster on developmental neural circuit imaging at the Cognitive Neuroscience Society 2023 Meeting" },
-      { year: "2023/10", title: "First Paper Published", desc: "Published the first research paper (based on 2021–2022 work) on the potential drug–drug interaction (DDI) risk of Ponatinib" },      
+      { year: "2023/10", title: "First First-Author Publication, in Toxicology in Vitro", desc: "Evaluated ponatinib-mediated inhibition of human UGT enzymes and predicted its potential drug–drug interaction risk", url:"https://www.sciencedirect.com/science/article/abs/pii/S0887233323001133" },
+      { year: "2023/11", title: "Co-authored Publication in Cell Reports", desc: "Contributed to an ultra-compact neuronal promoter study through neonatal mouse injection experiments", url:"https://www.cell.com/cell-reports/fulltext/S2211-1247(23)01360-8" },
       { year: "2024/04", title: "Designed Multi-Age Mouse Holder (Patent Pending)", desc: "Created a standardized holder adaptable for mice of various postnatal ages, improving stability in two-photon imaging" },
-      { year: "2024/05", title: "Upgraded Hardware of Behavior Tests (Patent Pending)", desc: "Enhanced behavior tests setup with custom hardware for precise control of illumination, odor, and auditory stimuli" },
-      { year: "2024/12", title: "Built a Mouse Treadmill (Patent Pending)", desc: "Constructed a two-photon compatible treadmill to monitor neural calcium dynamics during passive locomotion" },
-      { year: "2025/02", title: "Introduced a New-Generation 3D Printer", desc: "Implemented a high-precision 3D printer to accelerate design and fabrication of research tools" },
+      { year: "2024/05", title: "Upgraded Hardware of Behavior Tests (Patent Granted)", desc: "Enhanced behavior tests setup with custom hardware for precise control of illumination, odor, and auditory stimuli" },
+      { year: "2024/12", title: "Built a Mouse Treadmill (Patent Granted)", desc: "Constructed a two-photon compatible treadmill to monitor neural calcium dynamics during passive locomotion" },
       { year: "2025/03", title: "Automated Whole-Brain Analysis", desc: "Developed an ImageJ Macro pipeline for fluorescence quantification" },
       { year: "2025/03", title: "Behavioral Optimization", desc: "Integrated DeepLabCut for supervised behavioral tracking" },
       { year: "2025/04", title: "Built Automated von Frey System", desc: "Designed a von Frey stimulation setup compatible with two-photon imaging for mechanical sensory input" },
+      { year: "2025/04", title: "Co-authored Publication in Nat Commun", desc: "Contributed data analysis to a study on how ACC PV/SST interneurons regulate mouse social behavior", url:"https://www.nature.com/articles/s41467-025-59473-z"},
       { year: "2025/07", title: "Filed Three Utility Model Patents", desc: "Filed patents covering mouse treadmill, behavioral chamber, and head-fixation devices" },
       { year: "2025/09", title: "Manuscript Submission & CNS 2025 Poster", desc: "Submitted Rapid AAV Expression in Development and presented a poster at CNS 2025" },
+      { year: "2026/02", title: "Received and accepted PhD offer from UTSW"},
+      { year: "2026/03", title: "Utility Model Patent Granted", desc: "Behavioral Testing Chamber Patent Granted"},
+      { year: "2026/05", title: "Co-authored Publication in The J Headache Pain", desc: "Analyzed and visualized two-photon and fiber-photometry data for a modified FLIT-B trigeminal neuralgia study", url: "https://link.springer.com/article/10.1186/s10194-026-02394-z"},
+      { year: "2026/06", title: "First-Author Publication in Cell Reports Methods", desc:"Established an AAV-PHP.eB-based approach for rapid neuronal labeling and functional imaging in the developing mouse brain", url: "https://www.cell.com/cell-reports-methods/fulltext/S2667-2375(26)00172-4"},
+      { year: "2026/07", title: "Utility Model Patent Granted", desc: "Head-Fixed Mouse Treadmill Patent Granted"},
     ],
     publicationsTitle: "Publications",
     moreTitle: "More About Me",
@@ -326,7 +335,7 @@ function Authors({ text }: { text?: string }) {
 function ResearchTimeline({
   items,
 }: {
-  items: Array<{ year: string; title: string; desc: string }>;
+  items: Array<{ year: string; title: string; desc: string; url?: string }>;
 }) {
   const data = items ?? [];
   return (
@@ -344,7 +353,18 @@ function ResearchTimeline({
           >
             <div className={`p-4 ${i % 2 ? "md:col-start-2" : ""}`}>
               <div className="text-xs uppercase tracking-wide text-slate-400">{it.year}</div>
-              <div className="mt-1 font-medium">{it.title}</div>
+              {it.url ? (
+                <a
+                  href={it.url}
+                  target="_blanl"
+                  rel="noopener noreferrer"
+                  className="mt-1 block font-medium text-slate-100 hover:underline"
+                >
+                  {it.title}
+                </a>
+              ) : (
+                <div className="mt-1 font-medium">{it.title}</div>
+              )}
               <div className="text-sm text-slate-300">{it.desc}</div>
             </div>
             <span className={`absolute left-[10px] md:left-1/2 md:-ml-[6px] top-6 h-3 w-3 rounded-full bg-cyan-300`} />
